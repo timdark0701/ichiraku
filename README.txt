@@ -7,5 +7,3 @@ exotic_deer.py = это просто seating manager и он выводит со
 hostess.py = это тоже самое что и exotic_deer.py только с хосстесом
 
 * = все сообщения нужно писать в консоль.
-
-и нету Additional Features to our site, so pls do not lower our grade's too much
