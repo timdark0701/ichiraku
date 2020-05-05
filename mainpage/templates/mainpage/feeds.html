@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+      ########скрипт отвечающий за обновление##
+    <meta http-equiv="refresh" content="10">
+
+    <title>asdasdd</title>
+
+  </head>
+  <body>
+    <br>
+    <table id="demo" class="table table-bordered">
+      <thead>
+        <h1>Waitlist </h1>
+        <tr>
+          <th>Person's NAME:</th>
+          <th>Phone</th>
+          <th>Description</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in data %}
+            <tr>
+              <td>{{ forloop.counter }} - {{ item.name }}</td>
+              <td>{{ item.phone}}</td>
+              <td>{{item.description}}</td>
+              <td>{{item.email}}</td>
+            </tr>
+        {% endfor %}
+
+
+      </tbody>
+    </table>
+    ########скрипт отвечающий за обновление##
+<script>
+    setInterval(function() {
+                  window.location.reload();
+                }, 300000);
+                </script>
+
+  </body>
+</html>

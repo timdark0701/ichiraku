@@ -1,0 +1,168 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  
+  <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" />
+  {% comment %} <link href="{% static 'css/jquery.dataTables.min.css' %}" rel="stylesheet" /> {% endcomment %}
+  <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+
+</head>
+  <body class="containter">
+    
+    <div class="row">
+      <div class="col-md-6">
+      1
+      </div>
+      <div class="col-md-6">
+      2
+      </div>
+    </div>
+    
+  {% if alph %}
+    <ul>
+    {% for alp in alph %}
+        <li><a href="">{{ alp }}</a></li>
+    {% endfor %}
+    </ul>
+  {% else %}
+      <p>No data available.</p>
+  {% endif %}
+<table class="table" id="example">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Handle</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>Larry</td>
+      <td>the Bird</td>
+      <td>@<a >twitter</a></td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+	<table class="table table-striped table-responsive-md btn-table">
+    <thead>
+      <tr>
+        <th scope="col">QR</th>
+        <th scope="col">Product Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">Specifications</th>
+        <th scope="col">Quantity</th>
+      </tr>
+    </thead>
+    {% if goods %}
+      {% for item in goods %}
+        {% if user.is_authenticated%}
+        <form method="post" action="{% url 'invoice_management:item_get'  item.id %}">
+        {% else %}
+        <form>
+        {% endif %}
+        {% csrf_token %}
+          <tbody>
+            <tr>
+              <th scope="row">{{item.qr}}</th>
+              <td>{{item.product_name}}</td>
+              <td>{{item.price}}</td>
+              <td>{{item.specification_fk.name}}</td>
+              <td>{{item.quantitity}}</td>
+            </tr>
+            <tr>
+              <td>
+                {% if user.is_staff %}
+                {% else %}
+                  {{cartform.quantitity}}
+                {% endif%}
+              </td>
+            
+            </tr>
+          </tbody>
+        </form>
+      {% endfor %}
+    {% endif %}
+  </table>
+        
+         <div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+
+
+      <div id="content">
+        <h2 class="text-center">Export from HTML</h2>
+        <p>This is a demo for exporting PDF from html using jsPDF. Click save <code>button</code> to export this content.
+        </p>
+        <br>
+        <p>Also checkout <a href="https://github.com/simonbengtsson/jsPDF-AutoTable">jsPDF-Autotable</a> for generating PDF tables with more customizable options.</p>
+        <table id="demo" class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Serial Number</th>
+              <th>Name</th>
+              <th>Percentile</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>James</td>
+              <td>8.9</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Harry</td>
+              <td>7.6</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Emma</td>
+              <td>7.0</td>
+            </tr>
+          </tbody>
+        </table>
+        <div>
+          <button class="btn" id="export">Save</button>
+        </div>
+
+        <br>
+        <footer class="footer">Demo from https://jsfiddle.net/Purushoth/bor1nggb</footer>
+
+      </div>
+
+
+    </div>
+  </div>
+</div>
+        
+        <div>
+          <button class="btn" id="export">Save</button>
+        </div>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.3/jspdf.min.js"></script>
+  <script src="{% static 'js/script.js' %}"></script>
+
+  </body>
+</html>
